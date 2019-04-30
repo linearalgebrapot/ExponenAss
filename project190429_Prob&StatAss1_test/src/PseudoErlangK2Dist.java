@@ -1,12 +1,12 @@
 import java.util.Random;
 
-public class PseudoExponentialDist extends Dist{
+public class PseudoErlangK2Dist extends Dist{
 	public static final int REAPEAT = 10000;
 	public int ramda;
 	public double prob;
 	public int[] recordEachInterval;
 	
-	public PseudoExponentialDist(int domain, int ramda) { //도메인 1000, 람다 4
+	public PseudoErlangK2Dist(int domain, int ramda) { //도메인 1000, 람다 4
 		super(domain);
 		this.ramda = ramda;
 		this.prob = ramda/domain;
@@ -17,41 +17,43 @@ public class PseudoExponentialDist extends Dist{
 		}
 	}
 	
-	public void simulatePseudoExponentialDist() {
+	public void simulatePseudoErlangK2Dist() {
 		 //0 ~ domain-1 중에서 난수 하나 뽑아서 그 난수가 람다보다 작다면 success!
 		int i=0, j=0;
-		int firstSuccess;
-		int secondSuccess;
 		
 		for(i=0;i<REAPEAT;i++) {
 			Random rnd = new Random();
-			firstSuccess = 0;
-			secondSuccess = 0;
-			int tmp1, tmp2;
+			int firstSuccess = 0, secondSuccess = 0, thirdSuccess = 0;
+			//int tmp1, tmp2;
 			for(j=0;j<domain;j++) {
 				int isThisSuccess = rnd.nextInt(domain);
 				//System.out.println(j + "th : " + isThisSuccess);
 				if(isThisSuccess < ramda && firstSuccess == 0) { //관측이 성공 && 아직 성공 X
 					firstSuccess = j;
-					//tmp
 				}
 				
-				else if(isThisSuccess < ramda && firstSuccess != 0) { //관측이 성공 && 이미 한 번 성공
-					if(firstSuccess == 0)
-						System.out.println("??? : " + secondSuccess + "  " + firstSuccess);
+				if(isThisSuccess < ramda && firstSuccess != 0 && secondSuccess == 0) { //관측이 성공 && 이미 한 번 성공
 					secondSuccess = j;
-					break;
+				}
+				
+				if(isThisSuccess < ramda && firstSuccess != 0 && secondSuccess != 0) { //관측이 성공 && 이미 두 번 성공
+					thirdSuccess = j;
+					//break;
+				}
+				
+				if(isThisSuccess < ramda && firstSuccess != 0 && secondSuccess != 0 && thirdSuccess != 0) { //관측이 성공 && 이미 세 번 성공
+					continue;
 				}
 			}
-			//System.out.println("세 번째 성공이 관측된 직후 : " + Success + "  " + secondSuccess + "  " + firstSuccess);
-			if(secondSuccess - firstSuccess < 0) {
+			//System.out.println("세 번째 성공이 관측된 직후 : " + thirdSuccess + "  " + secondSuccess + "  " + firstSuccess);
+			if(thirdSuccess - firstSuccess < 0) {
 				System.out.println("At " + i + "th repeat, " +  j + "th try, Something went wrong");
-				System.out.println(secondSuccess + " - " + firstSuccess + " = " + (secondSuccess - firstSuccess));
+				System.out.println(thirdSuccess + " - " + firstSuccess + " = " + (thirdSuccess - firstSuccess));
 				//System.exit(0);
 			}
-			if(secondSuccess != 0) {
-				//System.out.println("At " + i + "th repeat, " + (secondSuccess - firstSuccess));
-				this.recordEachInterval[secondSuccess - firstSuccess]++;
+			if(thirdSuccess != 0) {
+				//System.out.println("At " + i + "th repeat, " + (thirdSuccess - firstSuccess));
+				this.recordEachInterval[thirdSuccess - firstSuccess]++;
 			}
 		}
 		double m=0;
@@ -73,4 +75,5 @@ public class PseudoExponentialDist extends Dist{
 		
 			
 	}
+
 }
