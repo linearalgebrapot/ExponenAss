@@ -5,11 +5,11 @@ public class Main {
 //		// TODO Auto-generated method stub
 		
 //		PseudoExponentialDist ped = new PseudoExponentialDist(1000, 100);
-//		ped.simulatePseudoExponentialDist();
+//		ped.simulate();
 //		ped.showData();
 		
 //		PseudoErlangK2Dist pek = new PseudoErlangK2Dist(10, 1);
-//		pek.simulatePseudoErlangK2Dist();
+//		pek.simulate();
 //		pek.showData();
 		
 		PseudoPoissonDist ppd = new PseudoPoissonDist(1000, 50);
@@ -17,9 +17,7 @@ public class Main {
 		ppd.showData();
 		System.out.println("--------------------------");
 		ChangedDist cd = new ChangedDist(ppd, 1, 0, 5);
-		//System.out.println("ok1");
 		cd.simulate();
-		//System.out.println("ok2");
 		cd.showData();
 		System.out.println("상관계수 : " + Dist.getCorrelationCoefficient(ppd, cd));
 		

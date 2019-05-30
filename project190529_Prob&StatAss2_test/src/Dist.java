@@ -66,8 +66,8 @@ public class Dist {
 		
 		for(int j=0;j<d2.pointSet.length;j++) {
 			for(int i=0;i<d1.pointSet.length;i++) {
-				d1d2.pointSet[d2.domain*j+i].x = d2.pointSet[j].x * d1.pointSet[i].x;
-				d1d2.pointSet[d2.domain*j+i].y = d2.pointSet[j].y * d1.pointSet[i].y;
+				d1d2.pointSet[d2.domain*j+i].value = d2.pointSet[j].value * d1.pointSet[i].value;
+				d1d2.pointSet[d2.domain*j+i].y = d2.pointSet[j].y * d1.pointSet[i].y; //여기 이상함. 이게 성립하려면 둘이 독립이여야 함
 			}
 		}
 		
