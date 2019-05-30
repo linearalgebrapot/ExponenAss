@@ -13,14 +13,14 @@ public class Dist {
 	}
 	
 	public Dist(Dist d) {
-		System.out.println("ok11");
+		//System.out.println("ok11");
 		this.domain = d.domain;
-		System.out.println("ok22");
+		//System.out.println("ok22");
 		this.pointSet = new Point[domain];
-		System.out.println("ok33");
+		//System.out.println("ok33");
 		for(int i=0;i<pointSet.length;i++)
 			pointSet[i] = new Point(d.pointSet[i]);
-		System.out.println("ok44");
+		//System.out.println("ok44");
 	}
 	
 	public double getMean() {

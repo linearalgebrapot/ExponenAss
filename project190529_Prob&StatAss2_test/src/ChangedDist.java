@@ -9,14 +9,11 @@ public class ChangedDist extends Dist{
 		
 		this.a = a;
 		this.b = b;
-		System.out.println("ok1 in cd cons");
-		this.originDist = new Dist(originDist);
-		System.out.println("ok2 in cd cons");
-		this.pnd = new PseudoNormalDist(10000, sd);
-		System.out.println("ok3 in cd cons");
+		this.originDist = new Dist(dist);
+		this.pnd = new PseudoNormalDist(10000, 10);
 	}
 	
-	public void simulate(Dist dist) {
+	public void simulate() {
 		for(int i=0;i<pointSet.length;i++) {
 			pointSet[i].value = a*originDist.pointSet[i].value + b + pnd.getRandomNorVal();
 			pointSet[i].y = originDist.pointSet[i].y;

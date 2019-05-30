@@ -17,9 +17,9 @@ public class Main {
 		ppd.showData();
 		System.out.println("--------------------------");
 		ChangedDist cd = new ChangedDist(ppd, 1, 0, 5);
-		System.out.println("ok1");
+		//System.out.println("ok1");
 		cd.simulate();
-		System.out.println("ok2");
+		//System.out.println("ok2");
 		cd.showData();
 		System.out.println("상관계수 : " + Dist.getCorrelationCoefficient(ppd, cd));
 		
