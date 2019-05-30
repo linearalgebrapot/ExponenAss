@@ -31,10 +31,14 @@ public class PseudoPoissonDist extends Dist{
 				if(randomNum<lambda)
 					successNum++;
 			}
+			//System.out.println(successNum);
 			(this.pointSet[successNum].x)++;
+			//System.out.println(this.pointSet[successNum].value);
 		}
 		
-		for(int i=0;i<pointSet.length;i++)
-			this.pointSet[i].y = this.pointSet[i].x / this.pointSet.length;
+		for(int i=0;i<pointSet.length;i++) {
+			this.pointSet[i].value = i;
+			this.pointSet[i].y = this.pointSet[i].x / REPEAT;
+		}
 	}
 }

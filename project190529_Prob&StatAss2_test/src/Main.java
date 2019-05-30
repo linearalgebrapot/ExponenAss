@@ -12,9 +12,16 @@ public class Main {
 //		pek.simulatePseudoErlangK2Dist();
 //		pek.showData();
 		
-		PseudoPoissonDist ppd = new PseudoPoissonDist(10000, 5000);
+		PseudoPoissonDist ppd = new PseudoPoissonDist(1000, 50);
 		ppd.simulate();
 		ppd.showData();
+		System.out.println("--------------------------");
+		ChangedDist cd = new ChangedDist(ppd, 1, 0, 5);
+		System.out.println("ok1");
+		cd.simulate();
+		System.out.println("ok2");
+		cd.showData();
+		System.out.println("상관계수 : " + Dist.getCorrelationCoefficient(ppd, cd));
 		
 		System.out.println("");
 	}
